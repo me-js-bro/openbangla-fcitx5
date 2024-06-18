@@ -95,7 +95,7 @@ case "$pkg" in
         ;;
 esac
 
-
+sleep 1 && clear
 
 printf "${action} - Now building ${yellow}Openbangla Keyboard ${end}...\n"
 
