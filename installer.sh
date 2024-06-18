@@ -125,7 +125,7 @@ make 2>&1 | tee -a "$log" || { printf "${error} - Build failed\n" 2>&1 | tee -a 
 sudo make install 2>&1 | tee -a "$log" || { printf "${error} - Installation failed\n" 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log"); exit 1; }
 
 printf "\n${attention} - Now installing some fonts (Bangla)\n" && sleep 1 && clear
-if https://github.com/asifakonjee/Fonts.git "$cache_dir/Fonts" 2>&1 | tee -a "$log"; then
+if git clone --depth=1 https://github.com/asifakonjee/Fonts.git "$cache_dir/Fonts" 2>&1 | tee -a "$log"; then
     mkdir -p ~/.local/share/fonts
     cp -r "$cache_dir/Fonts" ~/.local/share/fonts/
     sudo fc-cache -fv 2>&1 | tee -a "$log"
