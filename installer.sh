@@ -99,8 +99,13 @@ esac
 
 printf "${action} - Now building ${yellow}Openbangla Keyboard ${end}...\n"
 
-git clone --recursive https://github.com/asifakonjee/openbangla-fcitx5.git "$cache_dir/openbangla-fcitx5" 2>&1 | tee -a "$log" || { printf "${error} - Sorry, could not clone openbangla-fcitx5 repository\n" 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log"); exit 1; }
-sleep 1
+if [[ ! -d "$cache/openbangla-fcitx5" ]]; then
+
+    git clone --recursive https://github.com/asifakonjee/openbangla-fcitx5.git "$cache_dir/openbangla-fcitx5" 2>&1 | tee -a "$log" || { printf "${error} - Sorry, could not clone openbangla-fcitx5 repository\n" 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log"); exit 1; }
+
+else
+    printf "${note} - Directory '${orange}openbangla-fcitx5${end}' was located in the $cache directory. No need to clone it again.\n" && sleep 1
+fi
 
 # Move into the cloned directory
 cd "$cache_dir/openbangla-fcitx5" || { printf "${error} - Unable to change directory\n" 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log"); exit 1; }
