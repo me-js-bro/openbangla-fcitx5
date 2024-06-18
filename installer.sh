@@ -100,7 +100,7 @@ sleep 1 && clear
 printf "${action} - Now building ${yellow}Openbangla Keyboard ${end}...\n"
 
 if [[ -d "$cache_dir/openbangla-fcitx5" ]]; then
-    printf "${note} - Directory '${orange}openbangla-fcitx5${end}' was located in the $cache directory. Removing it.\n" && sleep 1
+    printf "${note} - Directory '${orange}openbangla-fcitx5${end}' was located in the $cache_dir directory. Removing it.\n" && sleep 1
     sudo rm -r "$cache_dir/openbangla-fcitx5"
 fi
 
